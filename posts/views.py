@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponseNotFound, Http404
-# from django.urls import reverse
+from posts.models import Post
 
 # Create your views here.
 
@@ -25,17 +25,9 @@ posts = [
 ]
 
 def home(request):
-    html = ""
-    for post in posts:
-        html += f'''
-            <div>
-            <a href="/post/{post['id']}/">
-                <h2>{post['id']} - {post['title']}</h2>
-            </a>
-                <p>{post['content']}</p>
-            </div>
-        '''
-    return render(request,'posts/index.html', {'posts':posts})
+    all_posts = Post.objects.all()
+    print(all_posts)
+    return render(request,'posts/index.html', {'posts':all_posts})
 
 def post(request, id):
     valid_id = False
