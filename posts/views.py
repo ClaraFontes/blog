@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponseNotFound, Http404
 from posts.models import Post
+from django.shortcuts import get_object_or_404
 
 # Create your views here.
 
@@ -10,10 +11,7 @@ def home(request):
     return render(request,'posts/index.html', {'posts':all_posts})
 
 def post(request, id):
-    try:
-        post = Post.objects.get(id=id)
-    except:
-        raise Http404()
+    post = get_object_or_404(Post,id=id)
     return render(request, 'posts/post.html', {'post_dict':post})
 
 def global_view(request):
