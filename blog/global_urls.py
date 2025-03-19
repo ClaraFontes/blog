@@ -23,3 +23,6 @@ urlpatterns = [
     path('post/', include('posts.posts_urls')),
     path("global/", views.global_view)
 ]
+
+admin.site.site_header = "My Blog"
+admin.site.index_title = "My Blog"
