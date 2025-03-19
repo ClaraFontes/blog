@@ -6,5 +6,6 @@ from .models import Post
 class PostAdmin(admin.ModelAdmin):
     list_display = ['id', 'post_title', 'publish_date']
     list_display_links = ['id', 'post_title']
+    list_filter = ['publish_date']
 
 # admin.site.register(Post, PostAdmin)
