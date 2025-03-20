@@ -16,7 +16,13 @@
                 <div>
                     {{campo.label_tag}}
                     {{campo}}
-                    {{campo.errors}}
+
+                    {% for erro in campo.errors %}
+                        <div class="bg-danger text-white rounded p-2 m-2">
+                            {{erro}}
+                        </div>
+                    {% endfor %}
+
                     {% if campo.help_text %}
                         <div class="bg-primary text-light rounded p-2 m-2">
                             {{campo.help_text}}
