@@ -12,7 +12,7 @@ class UsersForm(forms.ModelForm):
 
     class Meta:
         model = User
-        fields = ['nome', 'email', 'telefone', 'bio']
+        fields = '__all__'
         labels = {
             # 'nome':'Seu Nome',
             # 'email':'Seu Email',
