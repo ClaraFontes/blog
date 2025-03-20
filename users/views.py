@@ -22,18 +22,15 @@ def dados(request):
     return render(request, 'users/alldata.html', {'all_data':alldata})
 
 def atualizar(request,id):
-    user = User.objects.get(id=id)
+    user = User.objects.get(id=id) # será a instancia no else
     # print(user)
     if request.method == 'POST':
-        form = UsersForm(request.POST)
+        form = UsersForm(request.POST, instance=user)
         if form.is_valid():
-            user.nome = form.cleaned_data['nome']
-            user.email = form.cleaned_data['email']
-            user.telefone = form.cleaned_data['telefone']
-            user.bio = form.cleaned_data['bio']
             user.save()
+            return HttpResponseRedirect('/users/all-data/')
     else:
-        form = UsersForm(initial={'nome':user.nome,'email':user.email,'telefone':user.telefone,'bio':user.bio})
+        form = UsersForm(instance=user)
     return render(request, 'users/update.html', {'form':form})
 
 def deletar(request,id):
