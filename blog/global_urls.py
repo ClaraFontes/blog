@@ -21,7 +21,8 @@ from posts import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('post/', include('posts.posts_urls')),
-    path("global/", views.global_view)
+    path("global/", views.global_view),
+    path('users/', include('users.users_urls')),
 ]
 
 admin.site.site_header = "My Blog"
