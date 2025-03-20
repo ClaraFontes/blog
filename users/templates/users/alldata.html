@@ -9,6 +9,10 @@
     {% for user in all_data%}
         <div>
             <a href="{% url 'update' user.id %}"> {{user.nome}} </a>
+            <form action="{% url 'delete' user.id %}" method="POST">
+                {% csrf_token %}
+                <button type="submit">Deletar Usuário</button>
+            </form>
         </div>
     {% endfor %}
 </body>

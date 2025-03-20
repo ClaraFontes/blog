@@ -41,3 +41,9 @@ def atualizar(request,id):
     else:
         form = UsersForm(initial={'nome':user.nome,'email':user.email,'telefone':user.telefone,'bio':user.bio})
     return render(request, 'users/update.html', {'form':form})
+
+def deletar(request,id):
+    if request.method == 'POST':
+        user = User.objects.get(id=id)
+        user.delete()
+    return HttpResponseRedirect('/users/home/')
