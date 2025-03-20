@@ -8,13 +8,7 @@ def home(request):
     if request.method == 'POST':
         form = UsersForm(request.POST)
         if form.is_valid():
-            nome = form.cleaned_data['nome']
-            email = form.cleaned_data['email']
-            telefone = form.cleaned_data['telefone']
-            bio = form.cleaned_data['bio']
-
-            user = User.objects.create(nome=nome, email=email, telefone=telefone, bio=bio)
-
+            form.save()
             return HttpResponseRedirect('/users/obrigado/')
     else:
         form = UsersForm()
