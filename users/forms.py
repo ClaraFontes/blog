@@ -8,3 +8,13 @@ class UsersForm(forms.Form):
     telefone = forms.IntegerField(label="Número para Contato", label_suffix="", widget=forms.NumberInput(attrs={'class':'form-control'}))
 
     bio = forms.CharField(widget=forms.Textarea(attrs={'cols':20, 'placeholder':'Bio', 'class':'form-control'}))
+
+    def clean(self):
+        cleaned_data = super().clean()
+        nome = self.cleaned_data['nome']
+        email = self.cleaned_data['email']
+
+        if nome[0] != 'c' and nome[0] != 'C':
+            raise forms.ValidationError("A primeira letra do nome deve ser 'C'.")
+        if email[0] != 'c' and email[0] != 'C':
+            raise forms.ValidationError("A primeira letra do email deve ser 'C'.")
