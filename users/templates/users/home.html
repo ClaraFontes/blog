@@ -9,9 +9,22 @@
     <h1>Home Page do Usuário</h1>
     <form action="" method="POST">
         {% csrf_token %}
-        <ul>
-            {{form.as_ul}}
-        </ul>
+        <div>
+            {{form.nome.label_tag}}
+            {{form.nome}}
+            {{form.nome.errors}}
+        </div>
+        <div>
+            {{form.email.label_tag}}
+            {{form.email}}
+            {{form.email.help_text}}
+            {{form.email.errors}}
+        </div>
+        <div>
+            {{form.telefone.label_tag}}
+            {{form.telefone}}
+            {{form.telefone.errors}}
+        </div>
         <button type="submit">Enviar</button>
     </form>
 </body>
