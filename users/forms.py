@@ -8,11 +8,12 @@ def start_with_c(valor):
 
 class UsersForm(forms.ModelForm):
     nome = forms.CharField(validators=[validators.MaxLengthValidator(10),start_with_c],widget=forms.TextInput(attrs={'class':'form-control'}),label='Seu Nome')
-    email = forms.EmailField(validators=[start_with_c],widget=forms.EmailInput(attrs={'class':'form-control'}),label='Seu Email')
+    email = forms.EmailField(validators=[start_with_c],widget=forms.EmailInput(attrs={'class':'form-control'}),label='Seu Email', help_text="Apenas emails do Gmail são aceitos.")
 
     class Meta:
         model = User
-        fields = '__all__'
+        fields = "__all__"
+        exclude = ['bio']
         labels = {
             # 'nome':'Seu Nome',
             # 'email':'Seu Email',
