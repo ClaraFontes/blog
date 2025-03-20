@@ -7,18 +7,21 @@ def start_with_c(valor):
         raise forms.ValidationError("Este campo deve começar com a letra C.")
 
 class UsersForm(forms.ModelForm):
+    nome = forms.CharField(validators=[validators.MaxLengthValidator(10),start_with_c],widget=forms.TextInput(attrs={'class':'form-control'}),label='Seu Nome')
+    email = forms.EmailField(validators=[start_with_c],widget=forms.EmailInput(attrs={'class':'form-control'}),label='Seu Email')
+
     class Meta:
         model = User
         fields = ['nome', 'email', 'telefone', 'bio']
         labels = {
-            'nome':'Seu Nome',
-            'email':'Seu Email',
+            # 'nome':'Seu Nome',
+            # 'email':'Seu Email',
             'telefone':'Número para contato',
             'bio':'Sobre Você'
         }
         widgets = {
-            'nome':forms.TextInput(attrs={'class':'form-control'}),
-            'email':forms.EmailInput(attrs={'class':'form-control'}),
+            # 'nome':forms.TextInput(attrs={'class':'form-control'}),
+            # 'email':forms.EmailInput(attrs={'class':'form-control'}),
             'telefone':forms.NumberInput(attrs={'class':'form-control'}),
             'bio':forms.Textarea(attrs={'class':'form-control'})
         }
@@ -30,15 +33,16 @@ class UsersForm(forms.ModelForm):
                 'required':'Este campo é obrigatório!'
             }
         }
-    def clean(self):
-        cleaned_data = super().clean()
-        nome = self.cleaned_data['nome']
-        email = self.cleaned_data['email']
+    
+    # def clean(self):
+    #     cleaned_data = super().clean()
+    #     nome = self.cleaned_data['nome']
+    #     email = self.cleaned_data['email']
 
-        if nome[0] != 'c' and nome[0] != 'C':
-            raise forms.ValidationError("A primeira letra do nome deve ser 'C'.")
-        if email[0] != 'c' and email[0] != 'C':
-            raise forms.ValidationError("A primeira letra do email deve ser 'C'.")
+    #     if nome[0] != 'c' and nome[0] != 'C':
+    #         raise forms.ValidationError("A primeira letra do nome deve ser 'C'.")
+    #     if email[0] != 'c' and email[0] != 'C':
+    #         raise forms.ValidationError("A primeira letra do email deve ser 'C'.")
         
     # nome = forms.CharField(validators=[validators.MaxLengthValidator(10), start_with_c],min_length=5, label="Seu Nome", label_suffix="", error_messages={'required': "Seu nome não pode estar vazio!", 'min_length':"O tamanho mínmo para este campo é de 5 caracteres."}, widget=forms.TextInput(attrs={'class':'form-control'}))
     
