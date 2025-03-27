@@ -10,3 +10,4 @@ class PostAdmin(admin.ModelAdmin):
     search_fields = ['post_title']
 
 # admin.site.register(Post, PostAdmin)
+

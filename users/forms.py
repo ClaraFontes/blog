@@ -7,12 +7,13 @@ def start_with_c(valor):
         raise forms.ValidationError("Este campo deve começar com a letra C.")
 
 class UsersForm(forms.ModelForm):
-    nome = forms.CharField(validators=[validators.MaxLengthValidator(10),start_with_c],error_messages={'required': "Seu nome não pode estar vazio!"},widget=forms.TextInput(attrs={'class':'form-control'}),label='Seu Nome')
+    nome = forms.CharField(validators=[validators.MaxLengthValidator(10, message="O nome não pode ter mais de 10 caracteres!"),start_with_c],error_messages={'required': "Seu nome não pode estar vazio!"},widget=forms.TextInput(attrs={'class':'form-control'}),label='Seu Nome')
     email = forms.EmailField(validators=[start_with_c],required=False,widget=forms.EmailInput(attrs={'class':'form-control'}),label='Seu Email', help_text="Apenas emails do Gmail são aceitos.")
 
     class Meta:
         model = User
         fields = "__all__"
+        # exclude = ['bio']
         labels = {
             # 'nome':'Seu Nome',
             # 'email':'Seu Email',
@@ -49,5 +50,6 @@ class UsersForm(forms.ModelForm):
     # email = forms.EmailField(required=False, label="Seu Email", label_suffix="", help_text="Apenas emails do Gmail são aceitos.", widget=forms.EmailInput(attrs={'placeholder':'Insira seu melhor email', 'class':'form-control'}), validators=[start_with_c])
     # telefone = forms.IntegerField(label="Número para Contato", label_suffix="", widget=forms.NumberInput(attrs={'class':'form-control'}))
     # bio = forms.CharField(widget=forms.Textarea(attrs={'cols':20, 'placeholder':'Bio', 'class':'form-control'}))
+    
 
     
