@@ -38,3 +38,25 @@ def deletar(request,id):
         user = User.objects.get(id=id)
         user.delete()
     return HttpResponseRedirect('/users/home/')
+
+def set(request):
+    response = HttpResponse("Set")
+    response.set_cookie('tema','dark')
+    response.set_cookie('nome', 'clara', max_age=5)
+    response.set_cookie('teste', '123')
+    return response
+
+def get(request):
+    tema = request.COOKIES['tema']
+    print(tema)
+    return HttpResponse(f'atual tema da pagina: {tema}')
+
+def delete(request):
+    response = HttpResponse('deletado')
+    response.delete_cookie('teste')
+    return response
+
+def update(request):
+    response = HttpResponse('atualizado')
+    response.set_cookie('nome','Ana')
+    return response
