@@ -20,17 +20,20 @@ class CustomClassMiddleware:
     # Inicialização
     print('hello!')
 
-    def __call__(self,request):
-        # código a ser executado ANTES da view ser chamada - request
-        print('executado antes da view')
-        print(request.path)
+    def __call__(self,request): 
+        print('executado antes da view') # código executado ANTES da view ser chamada - request
 
         if(request.path == '/users/get/'):
             print("view get foi chamada")
 
-        response = HttpResponse("RESPONSE DA CLASSE MIDDLEWARE")
+        # response = HttpResponse("RESPONSE DA CLASSE MIDDLEWARE")
+        response = self.get_response(request) # passa a request para o próximo middleware (ou view)
 
-        # response = self.get_response(request) # passa a request para o próximo middleware (ou view)
-        print('executado depois da view')
-        # código a ser executado DEPOIS da view ser chamada - response
+        print('executado depois da view') # código executado DEPOIS da view ser chamada - response
         return response
+    
+    def process_view(self,request,view_func,view_args,view_kwargs):
+        print('process view antes da chamada da view')
+        print("NOME DA VIEW:",view_func.__name__)
+
+        return None
