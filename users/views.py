@@ -40,7 +40,8 @@ def deletar(request,id):
     return HttpResponseRedirect('/users/home/')
 
 def set(request):
-    response = HttpResponse("Set")
+    print("view 'set' foi chamada")
+    response = HttpResponse("Setting cookiess")
     response.set_cookie('tema','dark')
     response.set_cookie('nome', 'clara', max_age=5)
     response.set_cookie('teste', '123')
