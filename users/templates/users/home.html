@@ -8,6 +8,11 @@
 </head>
 <body>
     <h1>Home Page do Usuário</h1>
+
+    {{context_from_template_hook}}
+    <br>
+    {{name}}
+
     <div class="container">
         {{form.non_field_errors}}
         <form action="" method="POST">

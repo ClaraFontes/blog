@@ -38,8 +38,15 @@ class CustomClassMiddleware:
 
     #     return None
 
-    def process_exception(self,request,exception):
-        print('process exception foi chamado!')
-        print(exception)
-        # return HttpResponse("RESPONSE DO PROCESS_EXCEPTION") 
-        return None
+    # def process_exception(self,request,exception):
+    #     print('process exception foi chamado!')
+    #     print(exception)
+    #     # return HttpResponse("RESPONSE DO PROCESS_EXCEPTION") 
+    #     return None
+
+    def process_template_response(self,request,response):
+        print('process_template chamado após execução da view.')
+
+        # contexto para ser exibido no template 'home.html':
+        response.context_data['context_from_template_hook'] = 'hook template response!!' 
+        return response

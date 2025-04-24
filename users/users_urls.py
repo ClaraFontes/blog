@@ -10,6 +10,7 @@ urlpatterns = [
 
     # URLs COOKIES
     path('set/', views.set),
+    path('set2/', views.set_com_TemplateResponse),
     path('get/', views.get),
     path('delete/', views.delete),
     path('update/', views.update)

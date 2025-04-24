@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from .forms import UsersForm
 from django.http import HttpResponseRedirect, HttpResponse
+from django.template.response import TemplateResponse
 from .models import User
 
 # Create your views here.
@@ -50,17 +51,22 @@ def set(request):
 def set_com_render(request):
     response = render(request, "users/home.html")
     response.set_cookie('tema','light')
-    response.set_cookie('usuario','eu clara')
+    return response
+
+def set_com_TemplateResponse(request):
+    print("view 'set_com_TemplateResponse' foi chamada")
+    response = TemplateResponse(request, "users/home.html",{'name':'clarota'})
+    response.set_cookie('usuario','me myself and I')
     return response
 
 def get(request):
-    raise Exception("Exceção da view 'get'")
+    # raise Exception("Exceção da view 'get'")
     tema = request.COOKIES['tema']
     return HttpResponse(f'atual tema da pagina: {tema}')
 
 def delete(request):
     response = HttpResponse('deletado')
-    response.delete_cookie('teste')
+    response.delete_cookie('tema')
     return response
 
 def update(request):
