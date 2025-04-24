@@ -1,4 +1,4 @@
-
+from django.http import HttpResponse
 # def CustomFunctionMiddleware(get_response):
 #     # Inicialização
 #     print('hello!')
@@ -28,7 +28,9 @@ class CustomClassMiddleware:
         if(request.path == '/users/get/'):
             print("view get foi chamada")
 
-        response = self.get_response(request) # passa a request para o próximo middleware (ou view)
+        response = HttpResponse("RESPONSE DA CLASSE MIDDLEWARE")
+
+        # response = self.get_response(request) # passa a request para o próximo middleware (ou view)
         print('executado depois da view')
         # código a ser executado DEPOIS da view ser chamada - response
         return response
