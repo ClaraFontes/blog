@@ -46,6 +46,12 @@ def set(request):
     response.set_cookie('teste', '123')
     return response
 
+def set_com_render(request):
+    response = render(request, "users/home.html")
+    response.set_cookie('tema','light')
+    response.set_cookie('usuario','eu clara')
+    return response
+
 def get(request):
     tema = request.COOKIES['tema']
     print(tema)
