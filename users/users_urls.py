@@ -9,7 +9,7 @@ urlpatterns = [
     path('delete/<int:id>/', views.deletar, name="delete"),
 
     # URLs COOKIES
-    path('set/', views.set_com_render),
+    path('set/', views.set),
     path('get/', views.get),
     path('delete/', views.delete),
     path('update/', views.update)
