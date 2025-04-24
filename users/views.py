@@ -54,8 +54,8 @@ def set_com_render(request):
     return response
 
 def get(request):
+    raise Exception("Exceção da view 'get'")
     tema = request.COOKIES['tema']
-    print(tema)
     return HttpResponse(f'atual tema da pagina: {tema}')
 
 def delete(request):
