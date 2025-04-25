@@ -67,6 +67,8 @@ def get(request):
 def delete(request):
     response = HttpResponse('deletado')
     response.delete_cookie('tema')
+    response.delete_cookie('teste')
+    response.delete_cookie('usuario')
     return response
 
 def update(request):
