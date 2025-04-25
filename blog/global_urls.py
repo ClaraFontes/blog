@@ -23,6 +23,7 @@ urlpatterns = [
     path('post/', include('posts.posts_urls')),
     path("global/", views.global_view),
     path('users/', include('users.users_urls')),
+    path('session/', include('sessiontut.session_urls')),
 ]
 
 admin.site.site_header = "My Blog"
